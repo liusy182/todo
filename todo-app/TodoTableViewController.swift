@@ -15,6 +15,7 @@ class TodoTableViewController: UITableViewController {
     private var todosDatastore: TodosDatastore?
     private var todos: [Todo]?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -107,6 +108,13 @@ class TodoTableViewController: UITableViewController {
     }
     */
     
+    // MARK: actions
+    
+    @IBAction func addTodoButtonPressed(sender: UIBarButtonItem) {
+        print("addTodoButtonPressed")
+        performSegueWithIdentifier("addTodo", sender: self)
+    }
+    
     // MARK: - Configure
     
     func configure(todosDatastore: TodosDatastore) {
@@ -176,9 +184,9 @@ class TodoTableViewController: UITableViewController {
 
 // MARK: Actions
 extension TodoTableViewController {
-    func addTodoButtonPressed(sender: UIButton!){
-        print("addTodoButtonPressed")
-    }
+//    func addTodoButtonPressed(sender: UIButton!){
+//        print("addTodoButtonPressed")
+//    }
     
     func editButtonPressed(todo: Todo){
         print("editButtonPressed")
