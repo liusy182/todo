@@ -7,4 +7,3 @@ target 'todo-app' do
     pod 'LatoFont', :git => "https://github.com/gscalzo/LatoFont.git"
     pod 'MGSwipeTableCell', '~> 1.5.1'
 end
-

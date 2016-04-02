@@ -11,7 +11,10 @@ import UIKit
 //SY: why is this needed?
 //@objc(TodoTableViewController)
 class TodoTableViewController: UITableViewController {
-
+    
+    private var todosDatastore: TodosDatastore?
+    private var todos: [Todo]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +23,8 @@ class TodoTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        title = "Todos"
+        print(navigationItem.title)
     }
 
     override func didReceiveMemoryWarning() {
@@ -94,5 +99,11 @@ class TodoTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - Configure
+    
+    func configure(todosDatastore: TodosDatastore) {
+        self.todosDatastore = todosDatastore
+    }
 
 }
