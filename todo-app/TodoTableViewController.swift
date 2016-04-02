@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import MGSwipeTableCell
 
 //@objc(TodoTableViewController)
 class TodoTableViewController: UITableViewController {
@@ -50,7 +50,7 @@ class TodoTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TodoCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("TodoCell", forIndexPath: indexPath) as! MGSwipeTableCell
 
         // Configure the cell...
         if let todo = todos?[indexPath.row] {

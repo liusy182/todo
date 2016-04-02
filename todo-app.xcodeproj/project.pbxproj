@@ -14,7 +14,7 @@
 		432119781CA8118B00157EB8 /* TodoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432119771CA8118B00157EB8 /* TodoTableViewController.swift */; };
 		43E665621CAF9AA70091E676 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E665611CAF9AA70091E676 /* Todo.swift */; };
 		43E665641CAF9B240091E676 /* TodoDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E665631CAF9B240091E676 /* TodoDataStore.swift */; };
-		67111E5A6DBA7AA0DD805A98 /* libPods-todo-app.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54B80D93B9D7456078894657 /* libPods-todo-app.a */; };
+		9711400770645F19E1C517DA /* Pods_todo_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B378505E72C0C76EFB17598A /* Pods_todo_app.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,9 +27,9 @@
 		432119771CA8118B00157EB8 /* TodoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoTableViewController.swift; sourceTree = "<group>"; };
 		43E665611CAF9AA70091E676 /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		43E665631CAF9B240091E676 /* TodoDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoDataStore.swift; sourceTree = "<group>"; };
-		54B80D93B9D7456078894657 /* libPods-todo-app.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-todo-app.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66416CCC79709A14A83FA0D5 /* Pods-todo-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-todo-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-todo-app/Pods-todo-app.debug.xcconfig"; sourceTree = "<group>"; };
 		8E07A318F48A294D0F10C6E3 /* Pods-todo-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-todo-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-todo-app/Pods-todo-app.release.xcconfig"; sourceTree = "<group>"; };
+		B378505E72C0C76EFB17598A /* Pods_todo_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_todo_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67111E5A6DBA7AA0DD805A98 /* libPods-todo-app.a in Frameworks */,
+				9711400770645F19E1C517DA /* Pods_todo_app.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,7 +80,7 @@
 		5C046686409FD84B85666831 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				54B80D93B9D7456078894657 /* libPods-todo-app.a */,
+				B378505E72C0C76EFB17598A /* Pods_todo_app.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -338,6 +338,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "todo-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "liusy182.todo-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -350,6 +354,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "todo-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "liusy182.todo-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

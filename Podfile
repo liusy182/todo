@@ -3,6 +3,7 @@
 # Uncomment this line if you're using Swift
 # use_frameworks!
 
+use_frameworks!
 target 'todo-app' do
     pod 'LatoFont', :git => "https://github.com/gscalzo/LatoFont.git"
     pod 'MGSwipeTableCell', '~> 1.5.1'
