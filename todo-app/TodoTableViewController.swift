@@ -8,7 +8,7 @@
 
 import UIKit
 
-//SY: why is this needed?
+
 //@objc(TodoTableViewController)
 class TodoTableViewController: UITableViewController {
     
@@ -24,7 +24,11 @@ class TodoTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         title = "Todos"
-        print(navigationItem.title)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        refresh()
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,7 +45,7 @@ class TodoTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return todos?.count ?? 0
     }
 
     
@@ -49,7 +53,9 @@ class TodoTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("TodoCell", forIndexPath: indexPath)
 
         // Configure the cell...
-        cell.textLabel?.text = "Todo number \(indexPath.row)"
+        if let todo = todos?[indexPath.row] {
+            renderCell(cell, todo: todo)
+        }
         
         return cell
     }
@@ -104,6 +110,30 @@ class TodoTableViewController: UITableViewController {
     
     func configure(todosDatastore: TodosDatastore) {
         self.todosDatastore = todosDatastore
+    }
+    
+    // MARK: - Internal Functions
+    private func refresh() {
+        guard let todosDatastore = todosDatastore else {
+            return
+        }
+        
+        todos = todosDatastore.todos().sort {
+            $0.dueDate.compare($1.dueDate) == NSComparisonResult.OrderedAscending
+            
+        }
+        tableView.reloadData()
+    }
+    
+    private func renderCell(cell: UITableViewCell, todo: Todo){
+        let dateFormatter: NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH:mm dd-MM-YY"
+        
+        let dueDate = dateFormatter.stringFromDate(todo.dueDate)
+        cell.detailTextLabel?.text = "\(dueDate) | \(todo.list.description)"
+        cell.textLabel?.text = todo.description
+        
+        cell.accessoryType = todo.done ? .Checkmark : .None
     }
 
 }
