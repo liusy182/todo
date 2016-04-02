@@ -8,6 +8,8 @@
 
 import UIKit
 
+//SY: why is this needed?
+//@objc(TodoTableViewController)
 class TodoTableViewController: UITableViewController {
 
     override func viewDidLoad() {
@@ -29,23 +31,24 @@ class TodoTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 10
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("TodoCell", forIndexPath: indexPath)
 
         // Configure the cell...
-
+        cell.textLabel?.text = "Todo number \(indexPath.row)"
+        
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
