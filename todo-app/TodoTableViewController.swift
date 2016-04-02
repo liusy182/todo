@@ -55,6 +55,7 @@ class TodoTableViewController: UITableViewController {
         // Configure the cell...
         if let todo = todos?[indexPath.row] {
             renderCell(cell, todo: todo)
+            setupButtonsForCell(cell, todo: todo)
         }
         
         return cell
@@ -135,5 +136,61 @@ class TodoTableViewController: UITableViewController {
         
         cell.accessoryType = todo.done ? .Checkmark : .None
     }
+    
+    private func setupButtonsForCell(cell: MGSwipeTableCell, todo: Todo){
+        cell.rightButtons = [
+            MGSwipeButton(title: "Edit",
+                backgroundColor: UIColor.blueColor(),
+                padding: 30,
+                callback: {
+                    [weak self] sender in
+                    self?.editButtonPressed(todo)
+                    return true
+                }
+            ),
+            MGSwipeButton(title: "Delete",
+                backgroundColor: UIColor.redColor(),
+                padding: 30,
+                callback: {
+                    [weak self] sender in
+                    self?.deleteButtonPressed(todo)
+                    return true
+                }
+            )
+        ]
+        
+        cell.rightExpansion.buttonIndex = 0
+        cell.leftButtons = [
+            MGSwipeButton(title: "Done",
+                backgroundColor: UIColor.greenColor(),
+                padding: 30) {
+                    [weak self] sender in
+                    self?.doneButtonPressed(todo)
+                    return true
+                }
+        ]
+        cell.leftExpansion.buttonIndex = 0
+    }
 
+}
+
+// MARK: Actions
+extension TodoTableViewController {
+    func addTodoButtonPressed(sender: UIButton!){
+        print("addTodoButtonPressed")
+    }
+    
+    func editButtonPressed(todo: Todo){
+        print("editButtonPressed")
+    }
+    
+    func deleteButtonPressed(todo: Todo){
+        todosDatastore?.deleteTodo(todo)
+        refresh()
+    }
+    
+    func doneButtonPressed(todo: Todo){
+        todosDatastore?.doneTodo(todo)
+        refresh()
+    }
 }
