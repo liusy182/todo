@@ -14,10 +14,10 @@ class TodosDatastore {
     
     init(){
         savedLists = [
-            List(description: "Personal"),
             List(description: "Work"),
             List(description: "Family")
         ]
+        
         savedTodos = [
             Todo(description: "Remember the Milk",
                 list: List(description: "Family") ,
@@ -78,10 +78,7 @@ extension TodosDatastore {
             savedLists = savedLists + [List(description: description)]
         }
     }
-}
-
-// MARK: Defaults
-extension TodosDatastore {
+    
     func defaultList() -> List {
         return List(description: "Personal")
     }
@@ -92,4 +89,5 @@ extension TodosDatastore {
         return now.dateByAddingTimeInterval(secondsInADay)
     }
 }
+
 

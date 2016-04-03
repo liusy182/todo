@@ -15,6 +15,7 @@
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -176,9 +177,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="119.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✔️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EnJ-9D-K2d">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✔️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EnJ-9D-K2d">
                                                     <rect key="frame" x="16" y="0.0" width="584" height="119.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="50"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -232,7 +233,7 @@
                         <outlet property="dueDateLabel" destination="zC5-Cf-K7U" id="gfV-Wf-mpc"/>
                         <outlet property="dueDatePicker" destination="8Be-6t-x6e" id="fWl-ab-y0K"/>
                         <outlet property="listLabel" destination="fup-Op-T6v" id="1xL-YA-BUp"/>
-                        <segue destination="VXw-fC-glU" kind="show" id="kQa-GY-FiS"/>
+                        <segue destination="VXw-fC-glU" kind="show" identifier="addList" id="kQa-GY-FiS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ian-On-k4Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -300,6 +301,6 @@
         <image name="cross" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Fz6-VU-YTP"/>
+        <segue reference="X2S-7B-Im7"/>
     </inferredMetricsTieBreakers>
 </document>

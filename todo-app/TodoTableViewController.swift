@@ -97,6 +97,14 @@ class TodoTableViewController: UITableViewController {
         return true
     }
     */
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if let todo = todos?[indexPath.row] {
+            selectedTodo = todo
+            performSegueWithIdentifier("editTodo", sender: self)
+        }
+    }
 
     
     // MARK: - Navigation
@@ -126,9 +134,7 @@ class TodoTableViewController: UITableViewController {
     
     // MARK: actions
     
-    @IBAction func addTodoButtonPressed(sender: UIBarButtonItem) {
-        print("addTodoButtonPressed")
-        performSegueWithIdentifier("addTodo", sender: self)
+    @IBAction func addTodoButtonPressed(sender: UIBarButtonItem) {        performSegueWithIdentifier("addTodo", sender: self)
     }
     
     // MARK: - Configure
@@ -163,15 +169,6 @@ class TodoTableViewController: UITableViewController {
     
     private func setupButtonsForCell(cell: MGSwipeTableCell, todo: Todo){
         cell.rightButtons = [
-            MGSwipeButton(title: "Edit",
-                backgroundColor: UIColor.blueColor(),
-                padding: 30,
-                callback: {
-                    [weak self] sender in
-                    self?.editButtonPressed(todo)
-                    return true
-                }
-            ),
             MGSwipeButton(title: "Delete",
                 backgroundColor: UIColor.redColor(),
                 padding: 30,
@@ -195,19 +192,6 @@ class TodoTableViewController: UITableViewController {
         ]
         cell.leftExpansion.buttonIndex = 0
     }
-
-}
-
-// MARK: Actions
-extension TodoTableViewController {
-//    func addTodoButtonPressed(sender: UIButton!){
-//        print("addTodoButtonPressed")
-//    }
-    
-    func editButtonPressed(todo: Todo){
-        selectedTodo = todo;
-        performSegueWithIdentifier("editTodo", sender: self)
-    }
     
     func deleteButtonPressed(todo: Todo){
         todosDatastore?.deleteTodo(todo)
@@ -218,4 +202,5 @@ extension TodoTableViewController {
         todosDatastore?.doneTodo(todo)
         refresh()
     }
+
 }

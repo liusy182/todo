@@ -47,7 +47,7 @@ class EditTodoTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
+    /*
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0
@@ -57,6 +57,7 @@ class EditTodoTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 0
     }
+    */
 
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -102,6 +103,20 @@ class EditTodoTableViewController: UITableViewController {
         return true
     }
     */
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        switch EditTableViewRow(rawValue: indexPath.row)! {
+        case .List:
+            showAddList()
+        case .DueDate:
+            descriptionTextField.resignFirstResponder()
+        case .Done:
+            doneSelected()
+        default:
+            break
+        }
+    }
 
     
     // MARK: - Navigation
@@ -118,6 +133,7 @@ class EditTodoTableViewController: UITableViewController {
         if identifier == "addList" {
             destinationViewController.title = "Lists"
             destinationViewController.todosDatastore = todosDatastore
+            destinationViewController.selectedList = list;
             destinationViewController.onListSelected = { list in
                 self.list = list
                 self.refresh()
@@ -186,23 +202,4 @@ class EditTodoTableViewController: UITableViewController {
         performSegueWithIdentifier("addList", sender: self)
     }
 
-}
-
-// MARK: UITableViewDelegate
-extension EditTodoTableViewController {
-    override func tableView(
-        tableView: UITableView,
-        didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        switch EditTableViewRow(rawValue: indexPath.row)! {
-        case .List:
-            showAddList()
-        case .DueDate:
-            descriptionTextField.resignFirstResponder()
-        case .Done:
-            doneSelected()
-        default:
-            break
-        }
-    }
 }

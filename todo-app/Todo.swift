@@ -21,6 +21,10 @@ func ==(todo1: Todo, todo2: Todo) -> Bool {
         && todo1.dueDate == todo2.dueDate
 }
 
-struct List {
+struct List: Equatable {
     let description: String
+}
+
+func ==(list1: List, list2: List) -> Bool {
+    return list1.description == list2.description
 }
