@@ -68,7 +68,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="ddn-3W-sjH" kind="show" identifier="addTodo" id="X2S-7B-Im7"/>
-                        <segue destination="ddn-3W-sjH" kind="show" identifier="placeHolder" id="Fz6-VU-YTP"/>
+                        <segue destination="ddn-3W-sjH" kind="show" identifier="editTodo" id="Fz6-VU-YTP"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="62k-SX-jXn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -232,11 +232,50 @@
                         <outlet property="dueDateLabel" destination="zC5-Cf-K7U" id="gfV-Wf-mpc"/>
                         <outlet property="dueDatePicker" destination="8Be-6t-x6e" id="fWl-ab-y0K"/>
                         <outlet property="listLabel" destination="fup-Op-T6v" id="1xL-YA-BUp"/>
+                        <segue destination="VXw-fC-glU" kind="show" id="kQa-GY-FiS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ian-On-k4Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2537" y="262"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="JfW-7b-NYq">
+            <objects>
+                <tableViewController id="VXw-fC-glU" customClass="ListTableViewController" customModule="todo_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" id="cQF-Yq-TJa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="DPR-7V-nE4">
+                                <rect key="frame" x="0.0" y="92" width="600" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DPR-7V-nE4" id="5DY-Ru-xA0">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="49.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="VXw-fC-glU" id="mXu-v8-KeD"/>
+                            <outlet property="delegate" destination="VXw-fC-glU" id="2hC-jZ-MwN"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="Ldj-YF-XaL">
+                        <barButtonItem key="rightBarButtonItem" image="cross" id="SXV-9Y-51o">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="addListButtonTapped:" destination="VXw-fC-glU" id="ECo-KT-EoJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5EB-0K-dyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3217" y="262"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tNS-jd-P4q">
@@ -261,6 +300,6 @@
         <image name="cross" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="X2S-7B-Im7"/>
+        <segue reference="Fz6-VU-YTP"/>
     </inferredMetricsTieBreakers>
 </document>
