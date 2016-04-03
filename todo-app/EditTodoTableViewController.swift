@@ -181,20 +181,10 @@ class EditTodoTableViewController: UITableViewController {
     }
     
     func doneSelected() {
-        guard let descriptionText = descriptionTextField.text,
-            list = list,
-            dueDate = dueDate
-            where !descriptionText.isEmpty else {
-                return
+        guard let todo = todoToEdit else {
+            return
         }
-        let newTodo = Todo(
-            description: descriptionText,
-            list: list,
-            dueDate: dueDate,
-            done: false,
-            doneDate: nil)
-        todosDatastore?.addTodo(newTodo)
-        todosDatastore?.deleteTodo(todoToEdit)
+        todosDatastore?.doneTodo(todo)
         navigationController!.popViewControllerAnimated(true)
     }
     
