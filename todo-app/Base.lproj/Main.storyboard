@@ -76,7 +76,7 @@
             </objects>
             <point key="canvasLocation" x="1821" y="262"/>
         </scene>
-        <!--Edit Todo Table View Controller-->
+        <!--Title-->
         <scene sceneID="wcb-gv-obu">
             <objects>
                 <tableViewController id="ddn-3W-sjH" customClass="EditTodoTableViewController" customModule="todo_app" customModuleProvider="target" sceneMemberID="viewController">
@@ -228,6 +228,13 @@
                             <outlet property="delegate" destination="ddn-3W-sjH" id="oBN-X1-plI"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="Ici-iZ-B0w">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="7FM-I0-zg0">
+                            <connections>
+                                <action selector="saveTodo:" destination="ddn-3W-sjH" id="fhA-NC-VWo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="descriptionTextField" destination="gWd-lL-KEo" id="SMh-EP-w17"/>
                         <outlet property="dueDateLabel" destination="zC5-Cf-K7U" id="gfV-Wf-mpc"/>

@@ -59,18 +59,9 @@ extension TodosDatastore {
         }
     }
     
-    func doneTodo(todo: Todo) {
-        //immutable struct, so we have to 
-        //delete the previous one and add a new
-        //one with state 'done' 
-        deleteTodo(todo)
-        let doneTodo = Todo(
-            description: todo.description,
-            list: todo.list,
-            dueDate: todo.dueDate,
-            done: true,
-            doneDate: NSDate())
-        addTodo(doneTodo)
+    func editTodo(oldTodo: Todo, newTodo: Todo) {
+        deleteTodo(oldTodo)
+        addTodo(newTodo)
     }
     
     func addListDescription(description: String) {

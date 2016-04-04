@@ -115,13 +115,15 @@ class ListTableViewController: UITableViewController {
             title: "Enter list name",
             message: "To create a new list, please enter the name of the list",
             preferredStyle: .Alert)
+        
         let okAction = UIAlertAction(
             title: "OK",
-            style: .Default) { (
-                action: UIAlertAction!) -> Void in
-                    let textField = alert.textFields?.first
-                    self.addList(textField?.text ?? "")
-            }
+            style: .Default,
+            handler: {
+                action in
+                let textField = alert.textFields?.first
+                self.addList(textField?.text ?? "")
+        })
         let cancelAction = UIAlertAction(
             title: "Cancel",
             style: .Default, handler: nil)

@@ -119,13 +119,28 @@ class TodoTableViewController: UITableViewController {
         }
         
         destinationViewController.todosDatastore = todosDatastore
-        destinationViewController.todoToEdit = selectedTodo
+        
         
         switch identifier {
         case "addTodo":
             destinationViewController.title = "New Todo"
+            destinationViewController.todosDatastore = todosDatastore
+            destinationViewController.todoToEdit = Todo(
+                description: "",
+                list: List(description: "Personal"),
+                dueDate: NSDate(),
+                done: false,
+                doneDate: nil)
+            destinationViewController.onSaveTodo = {
+                todo in self.todosDatastore?.addTodo(todo)
+            }
         case "editTodo":
             destinationViewController.title = "Edit Todo"
+            destinationViewController.todosDatastore = todosDatastore
+            destinationViewController.todoToEdit = selectedTodo
+            destinationViewController.onSaveTodo = {
+                todo in self.todosDatastore?.editTodo(self.selectedTodo!, newTodo: todo)
+            }
         default:
             break
         }
@@ -199,7 +214,12 @@ class TodoTableViewController: UITableViewController {
     }
     
     func doneButtonPressed(todo: Todo){
-        todosDatastore?.doneTodo(todo)
+        todosDatastore?.editTodo(todo, newTodo: Todo(
+            description: todo.description,
+            list: todo.list,
+            dueDate: todo.dueDate,
+            done: true, doneDate: NSDate())
+        )
         refresh()
     }
 

@@ -24,10 +24,12 @@ class EditTodoTableViewController: UITableViewController {
     @IBOutlet var dueDateLabel: UILabel!
     @IBOutlet var dueDatePicker: UIDatePicker!
     
+    var onSaveTodo: ((todo: Todo) -> Void)?
     var todoToEdit: Todo?
     var todosDatastore: TodosDatastore?
     private var list: List?
     private var dueDate: NSDate?
+    private var done: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,6 +106,17 @@ class EditTodoTableViewController: UITableViewController {
     }
     */
     
+    // MARK: actions
+    
+    @IBAction func saveTodo(sender: UIBarButtonItem) {
+        guard let onSaveTodo = onSaveTodo, todoToEdit = todoToEdit else {
+            return
+        }
+        updateTodo()
+        onSaveTodo(todo: todoToEdit)
+        navigationController!.popViewControllerAnimated(true)
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         switch EditTableViewRow(rawValue: indexPath.row)! {
@@ -148,14 +161,17 @@ class EditTodoTableViewController: UITableViewController {
             descriptionTextField.text = todo.description
             list = todo.list
             dueDate = todo.dueDate
+            done = todo.done
         } else if let todosDatastore = todosDatastore {
             list = todosDatastore.defaultList()
             dueDate = todosDatastore.defaultDueDate()
+            done = false
         }
         datePickerSetup()
     }
     
     private func refresh() {
+        descriptionTextField.text = descriptionTextField.text ?? ""
         listLabel.text = "List: \(list!.description)"
         let dateFormatter:NSDateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "HH:mm dd-MM-YY"
@@ -181,15 +197,22 @@ class EditTodoTableViewController: UITableViewController {
     }
     
     func doneSelected() {
-        guard let todo = todoToEdit else {
-            return
-        }
-        todosDatastore?.doneTodo(todo)
-        navigationController!.popViewControllerAnimated(true)
+        done = !done!
+        updateTodo()
     }
     
     func showAddList() {
         performSegueWithIdentifier("addList", sender: self)
+    }
+    
+    func updateTodo() {
+        todoToEdit = Todo(
+            description: descriptionTextField.text! as String,
+            list: List(description: listLabel.text! as String),
+            dueDate: dueDatePicker.date,
+            done: done ?? false,
+            doneDate: nil
+        )
     }
 
 }
