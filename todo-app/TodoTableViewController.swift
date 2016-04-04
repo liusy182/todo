@@ -133,6 +133,7 @@ class TodoTableViewController: UITableViewController {
                 doneDate: nil)
             destinationViewController.onSaveTodo = {
                 todo in self.todosDatastore?.addTodo(todo)
+                self.refresh()
             }
         case "editTodo":
             destinationViewController.title = "Edit Todo"
@@ -140,6 +141,7 @@ class TodoTableViewController: UITableViewController {
             destinationViewController.todoToEdit = selectedTodo
             destinationViewController.onSaveTodo = {
                 todo in self.todosDatastore?.editTodo(self.selectedTodo!, newTodo: todo)
+                self.refresh()
             }
         default:
             break

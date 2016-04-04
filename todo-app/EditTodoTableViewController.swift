@@ -17,7 +17,7 @@ enum EditTableViewRow : Int {
 }
 
 
-class EditTodoTableViewController: UITableViewController {
+class EditTodoTableViewController: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet var descriptionTextField: UITextField!
     @IBOutlet var listLabel: UILabel!
@@ -27,6 +27,7 @@ class EditTodoTableViewController: UITableViewController {
     var onSaveTodo: ((todo: Todo) -> Void)?
     var todoToEdit: Todo?
     var todosDatastore: TodosDatastore?
+    private var todoDescription: String?
     private var list: List?
     private var dueDate: NSDate?
     private var done: Bool?
@@ -109,11 +110,11 @@ class EditTodoTableViewController: UITableViewController {
     // MARK: actions
     
     @IBAction func saveTodo(sender: UIBarButtonItem) {
-        guard let onSaveTodo = onSaveTodo, todoToEdit = todoToEdit else {
+        guard let onSaveTodo = onSaveTodo else {
             return
         }
         updateTodo()
-        onSaveTodo(todo: todoToEdit)
+        onSaveTodo(todo: todoToEdit!)
         navigationController!.popViewControllerAnimated(true)
     }
     
@@ -157,12 +158,20 @@ class EditTodoTableViewController: UITableViewController {
     
     // MARK: private functions
     private func setup() {
+        descriptionTextField.delegate = self;
+        descriptionTextField.addTarget(
+            self,
+            action: #selector(EditTodoTableViewController.descriptionChanged(_:)),
+            forControlEvents: .EditingChanged)
+        
         if let todo = todoToEdit {
             descriptionTextField.text = todo.description
+            todoDescription = todo.description
             list = todo.list
             dueDate = todo.dueDate
             done = todo.done
         } else if let todosDatastore = todosDatastore {
+            todoDescription = ""
             list = todosDatastore.defaultList()
             dueDate = todosDatastore.defaultDueDate()
             done = false
@@ -171,8 +180,7 @@ class EditTodoTableViewController: UITableViewController {
     }
     
     private func refresh() {
-        descriptionTextField.text = descriptionTextField.text ?? ""
-        listLabel.text = "List: \(list!.description)"
+        listLabel.text = "\(list!.description)"
         let dateFormatter:NSDateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "HH:mm dd-MM-YY"
         if let dueDate = dueDate {
@@ -196,6 +204,11 @@ class EditTodoTableViewController: UITableViewController {
         refresh()
     }
     
+    func descriptionChanged(sender: UITextField!) {
+        todoDescription = sender.text
+        refresh()
+    }
+    
     func doneSelected() {
         done = !done!
         updateTodo()
@@ -207,12 +220,22 @@ class EditTodoTableViewController: UITableViewController {
     
     func updateTodo() {
         todoToEdit = Todo(
-            description: descriptionTextField.text! as String,
+            description: todoDescription!,
             list: List(description: listLabel.text! as String),
             dueDate: dueDatePicker.date,
             done: done ?? false,
             doneDate: nil
         )
+    }
+    
+    // MARK: UITextFieldDelegate
+    func textFieldDidEndEditing(textField: UITextField) {
+        todoDescription = textField.text!
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 
 }
